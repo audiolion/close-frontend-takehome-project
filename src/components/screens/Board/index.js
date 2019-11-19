@@ -1,5 +1,1 @@
-import React from 'react';
-
-export default function Board() {
-  return <div />;
-}
+export * from './Board';
