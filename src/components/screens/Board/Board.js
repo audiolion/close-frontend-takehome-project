@@ -69,16 +69,20 @@ export function Board() {
     setState(newState);
   };
 
+  const colIds = Object.keys(state.columns);
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <main className={styles.board}>
-        {Object.keys(state.columns).map(colId => {
+        {colIds.map(colId => {
           const column = state.columns[colId];
           return (
             <KanbanColumn
               key={column.id}
               colId={column.id}
               title={column.title}
+              cardIds={column.cardIds}
+              cards={state.cards}
             />
           );
         })}

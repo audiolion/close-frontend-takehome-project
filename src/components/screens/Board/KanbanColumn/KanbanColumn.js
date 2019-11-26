@@ -1,13 +1,9 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import { BoardStateContext } from '../../../context/BoardProvider';
 import { KanbanCard } from '../KanbanCard';
 import styles from './kanban-column.module.css';
 
-export const KanbanColumn = ({ colId, title }) => {
-  const state = React.useContext(BoardStateContext);
-  const cardIds = state.columns[colId].cardIds;
-
+export const KanbanColumn = React.memo(({ colId, title, cardIds, cards }) => {
   return (
     <section className={styles.column}>
       <header className={styles.header}>
@@ -31,23 +27,27 @@ export const KanbanColumn = ({ colId, title }) => {
             {...provided.droppableProps}
             className={styles.cardList}
           >
-            {cardIds.map((cardId, index) => {
-              const card = state.cards[cardId];
-              return (
-                <KanbanCard
-                  key={card.id}
-                  cardId={card.id}
-                  title={card.title}
-                  authorEmail={card.authorEmail}
-                  content={card.content}
-                  index={index}
-                />
-              );
-            })}
+            <KanbanCardList cardIds={cardIds} cards={cards} />
             {provided.placeholder}
           </div>
         )}
       </Droppable>
     </section>
   );
-};
+});
+
+const KanbanCardList = React.memo(function KanbanCardList({ cards, cardIds }) {
+  return cardIds.map((cardId, index) => {
+    const card = cards[cardId];
+    return (
+      <KanbanCard
+        key={card.id}
+        cardId={card.id}
+        title={card.title}
+        authorEmail={card.authorEmail}
+        content={card.content}
+        index={index}
+      />
+    );
+  });
+});
