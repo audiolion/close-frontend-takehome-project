@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './kanban-column.module.css';
+import { KanbanCard } from '../KanbanCard';
 
 export const KanbanColumn = ({ title }) => {
   return (
@@ -17,6 +18,28 @@ export const KanbanColumn = ({ title }) => {
           </svg>
         </button>
       </header>
+
+      <KanbanCard
+        authorEmail="lukas@close.io"
+        title="Technical Call 2"
+        content="Have a call with Close's Engineering Manager and Frontend Tech Lead."
+      />
+
+      <KanbanCard
+        authorEmail="mary@close.io"
+        title="Culture Call"
+        content="Get to know Mary Hartberg, Close's queen of culture!"
+      />
+      <KanbanCard
+        authorEmail="phil@close.io"
+        title="General Call 3"
+        content="Time to talk to Phil Freo, the Director of Engineering at Close :D"
+      />
+      <KanbanCard
+        authorEmail="steli@close.io"
+        title="Chat with Founder"
+        content="Getting so Close (pun intended)"
+      />
     </section>
   );
 };
