@@ -6,15 +6,3 @@
   overflow: auto;
   height: 100%;
 }
-
-.column {
-  width: 20rem;
-  background: var(--bg-gray);
-  border: 1px solid var(--border-gray);
-  border-radius: 0.375rem;
-  padding: 1rem;
-}
-
-.column:not(:first-child) {
-  margin-left: 2rem;
-}

@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './board.module.css';
+import { KanbanColumn } from './KanbanColumn';
 
 export function Board() {
   return (
     <main className={styles.board}>
-      <div className={styles.column}></div>
-      <div className={styles.column}></div>
-      <div className={styles.column}></div>
+      <KanbanColumn title="To do" />
+      <KanbanColumn title="In progress" />
+      <KanbanColumn title="Done" />
     </main>
   );
 }
