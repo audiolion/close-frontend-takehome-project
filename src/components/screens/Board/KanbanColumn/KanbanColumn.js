@@ -14,7 +14,7 @@ export const KanbanColumn = ({ title }) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path d="M12 0v24M0 12h24" stroke="#222" stroke-width="4" />
+            <path d="M12 0v24M0 12h24" stroke="#222" strokeWidth="4" />
           </svg>
         </button>
       </header>
