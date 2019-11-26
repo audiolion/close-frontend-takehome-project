@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './kanban-column-header.module.css';
 
-export const KanbanColumnHeader = ({ title }) => {
+export const KanbanColumnHeader = ({ title, onOpenCardForm }) => {
   return (
     <header className={styles.header}>
       <h2 className={styles.heading}>{title}</h2>
-      <button type="button">
+      <button type="button" onClick={onOpenCardForm}>
         <svg
           width="24"
           height="24"

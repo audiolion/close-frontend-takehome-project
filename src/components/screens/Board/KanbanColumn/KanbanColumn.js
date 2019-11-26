@@ -2,25 +2,34 @@ import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { KanbanCard } from './KanbanCard';
 import { KanbanColumnHeader } from './KanbanColumnHeader';
+import { KanbanCardForm } from './KanbanCardForm';
 import styles from './kanban-column.module.css';
 
 export const KanbanColumn = React.memo(({ colId, title, cardIds, cards }) => {
+  const [isCardFormOpen, setIsCardFormOpen] = React.useState(false);
+
+  const openCardForm = () => setIsCardFormOpen(true);
+  const closeCardForm = () => setIsCardFormOpen(false);
+  const saveCard = () => {};
+
   return (
     <section className={styles.column}>
-      <KanbanColumnHeader title={title} />
+      <KanbanColumnHeader title={title} onOpenCardForm={openCardForm} />
 
-      <Droppable droppableId={`${colId}`}>
-        {provided => (
-          <div
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-            className={styles.cardList}
-          >
-            <KanbanCardList cardIds={cardIds} cards={cards} />
-            {provided.placeholder}
-          </div>
+      <div className={styles.cardList}>
+        {isCardFormOpen && (
+          <KanbanCardForm onSave={saveCard} onCancel={closeCardForm} />
         )}
-      </Droppable>
+
+        <Droppable droppableId={`${colId}`}>
+          {provided => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              <KanbanCardList cardIds={cardIds} cards={cards} />
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
     </section>
   );
 });
