@@ -3,7 +3,7 @@ import createPersistedState from 'use-persisted-state';
 import { BOARD_CACHE_KEY } from '../../utils';
 
 export const BoardStateContext = React.createContext();
-export const BoardSetStateContext = React.createContext();
+export const BoardStateChangeContext = React.createContext();
 
 const initialState = {
   columns: {
@@ -74,19 +74,74 @@ const initialState = {
 
 const useBoardState = createPersistedState(BOARD_CACHE_KEY);
 
+const useBoard = initialState => {
+  const [state, setState] = useBoardState(initialState);
+
+  const moveCard = ({ source, destination, cardId }) => {
+    const sourceColumn = state.columns[source.droppableId];
+    const destinationColumn = state.columns[destination.droppableId];
+
+    const sourceCardIds = [...sourceColumn.cardIds];
+    sourceCardIds.splice(source.index, 1);
+
+    if (sourceColumn.id === destinationColumn.id) {
+      sourceCardIds.splice(destination.index, 0, cardId);
+    }
+
+    const newSourceColumn = {
+      ...sourceColumn,
+      cardIds: sourceCardIds,
+    };
+
+    let newDestinationColumn;
+    if (sourceColumn.id !== destinationColumn.id) {
+      const destinationCardIds = [...destinationColumn.cardIds];
+      destinationCardIds.splice(destination.index, 0, cardId);
+
+      newDestinationColumn = {
+        ...destinationColumn,
+        cardIds: destinationCardIds,
+      };
+    }
+
+    const newState = {
+      ...state,
+      columns: {
+        ...state.columns,
+        [newSourceColumn.id]: newSourceColumn,
+        ...(newDestinationColumn
+          ? { [newDestinationColumn.id]: newDestinationColumn }
+          : {}),
+      },
+    };
+
+    setState(newState);
+  };
+
+  return {
+    state,
+    moveCard,
+  };
+};
 export const BoardProvider = props => {
   let savedState;
   try {
     savedState = localStorage.getItem(BOARD_CACHE_KEY);
   } catch {}
 
-  const [state, setState] = useBoardState(savedState || initialState);
+  const { state, moveCard } = useBoard(savedState || initialState);
 
+  const stateChangeContext = React.useMemo(
+    () => ({
+      moveCard,
+    }),
+    [moveCard],
+  );
   return (
     <BoardStateContext.Provider value={state}>
-      <BoardSetStateContext.Provider value={setState}>
+      <BoardStateChangeContext.Provider value={stateChangeContext}>
         {props.children}
-      </BoardSetStateContext.Provider>
+      </BoardStateChangeContext.Provider>
     </BoardStateContext.Provider>
   );
 };
