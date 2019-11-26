@@ -35,4 +35,5 @@
   color: var(--text-black);
   margin: 0;
   margin-top: 0.75rem;
+  min-height: 40px;
 }
