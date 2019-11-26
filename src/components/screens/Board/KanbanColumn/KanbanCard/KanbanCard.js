@@ -4,7 +4,7 @@ import { Avatar } from '../../Avatar';
 import styles from './kanban-card.module.css';
 
 export const KanbanCard = React.memo(
-  ({ cardId, index, title, content, authorEmail }) => {
+  ({ cardId, index, title, description, authorEmail }) => {
     return (
       <Draggable draggableId={`${cardId}`} index={index}>
         {provided => (
@@ -18,7 +18,7 @@ export const KanbanCard = React.memo(
               <Avatar email={authorEmail} />
               <h3 className={styles.heading}>{title}</h3>
             </header>
-            <p className={styles.content}>{content}</p>
+            <p className={styles.description}>{description}</p>
           </article>
         )}
       </Draggable>
@@ -28,12 +28,11 @@ export const KanbanCard = React.memo(
 );
 
 function arePropsEqual(prevProps, nextProps) {
-  console.log({ prevProps, nextProps });
   return (
     prevProps.cardId === nextProps.cardId &&
     prevProps.index === nextProps.index &&
     prevProps.title === nextProps.title &&
-    prevProps.context === nextProps.content &&
+    prevProps.description === nextProps.description &&
     prevProps.authorEmail === nextProps.authorEmail
   );
 }

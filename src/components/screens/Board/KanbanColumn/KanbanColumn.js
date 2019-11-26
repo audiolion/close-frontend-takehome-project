@@ -43,7 +43,7 @@ const KanbanCardList = React.memo(function KanbanCardList({ cards, cardIds }) {
         cardId={card.id}
         title={card.title}
         authorEmail={card.authorEmail}
-        content={card.content}
+        description={card.description}
         index={index}
       />
     );

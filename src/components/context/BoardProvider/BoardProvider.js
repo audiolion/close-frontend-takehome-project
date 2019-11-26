@@ -28,45 +28,46 @@ const initialState = {
       id: 1,
       authorEmail: 'lukas@close.io',
       title: 'Technical Call 2',
-      content:
+      description:
         "Have a call with Close's Engineering Manager and Frontend Tech Lead.",
     },
     2: {
       id: 2,
       authorEmail: 'mary@close.io',
       title: 'Culture Call',
-      content: "Get to know Mary Hartberg, Close's queen of culture!",
+      description: "Get to know Mary Hartberg, Close's queen of culture!",
     },
     3: {
       id: 3,
       authorEmail: 'phil@close.io',
       title: 'General Call 3',
-      content:
+      description:
         'Time to talk to Phil Freo, the Director of Engineering at Close :D',
     },
     4: {
       id: 4,
       authorEmail: 'steli@close.io',
       title: 'Chat with Founder',
-      content: 'Getting so Close (pun intended)',
+      description: 'Getting so Close (pun intended)',
     },
     5: {
       id: 5,
       authorEmail: 'vitor@close.io',
       title: 'Take-Home Project',
-      content: 'Create a simple Kanban Board to show your skills.',
+      description: 'Create a simple Kanban Board to show your skills.',
     },
     6: {
       id: 6,
       authorEmail: 'bart@close.io',
       title: 'Technical Call 1',
-      content: 'Talk to one of the Frontend Engineers currently in the team.',
+      description:
+        'Talk to one of the Frontend Engineers currently in the team.',
     },
     7: {
       id: 7,
       authorEmail: 'vitor@close.io',
       title: 'Screening',
-      content:
+      description:
         "Fill out Close's application form, so they can get to know me :)",
     },
   },
