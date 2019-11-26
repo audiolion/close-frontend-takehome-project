@@ -15,9 +15,14 @@ code {
 html {
   --bg-white: #fafafa;
   --bg-gray: #efefef;
+  --bg-green: #47bb7f;
+  --bg-dark-green: #389565;
   --border-gray: #dedede;
+  --border-input: #dadada;
+  --text-white: #ffffff;
   --text-blue: #4364af;
   --text-black: #000000;
+  --text-red: #cc0000;
   --text-offblack: #222222;
 }
 
