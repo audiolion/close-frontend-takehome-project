@@ -20,3 +20,10 @@ html {
   --text-black: #000000;
   --text-offblack: #222222;
 }
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
