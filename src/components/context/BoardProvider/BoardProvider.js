@@ -3,45 +3,6 @@ import React from 'react';
 export const BoardStateContext = React.createContext();
 export const BoardSetStateContext = React.createContext();
 
-// function boardReducer(state, action) {
-//   switch (action.type) {
-//     case 'card/add': {
-//       return state.map(col => {
-//         if (col.title === action.payload.columnId) {
-//           const card = {
-//             authorEmail: action.payload.authorEmail,
-//             title: action.payload.title,
-//             content: action.payload.content,
-//           };
-//           col.cards.push(card);
-//         }
-//         return col;
-//       });
-//     }
-//     case 'card/move': {
-//       return state.map(col => {
-//         if (col.title === action.payload.previousColumnId) {
-//           return col.cards.filter(
-//             card => card.authorEmail === action.payload.cardId,
-//           );
-//         }
-//         if (col.title === action.payload.newColumnId) {
-//           const card = {
-//             authorEmail: action.payload.authorEmail,
-//             title: action.payload.title,
-//             content: action.payload.content,
-//           };
-//           return col.cards.push(card);
-//         }
-//         return col;
-//       });
-//     }
-//     default: {
-//       throw new Error(`Unsupported action type: ${action.type}`);
-//     }
-//   }
-// }
-
 const initialState = {
   columns: {
     1: {
