@@ -4,5 +4,10 @@
   display: flex;
   flex: 1;
   overflow: auto;
-  height: 100%;
+}
+
+.overflow {
+  overflow: auto;
+  flex: 1;
+  flex-direction: column;
 }
