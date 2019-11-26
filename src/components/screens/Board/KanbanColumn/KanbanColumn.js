@@ -1,24 +1,13 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { KanbanCard } from '../KanbanCard';
+import { KanbanColumnHeader } from './KanbanColumnHeader';
 import styles from './kanban-column.module.css';
 
 export const KanbanColumn = React.memo(({ colId, title, cardIds, cards }) => {
   return (
     <section className={styles.column}>
-      <header className={styles.header}>
-        <h2 className={styles.heading}>{title}</h2>
-        <button type="button">
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 0v24M0 12h24" stroke="#222" strokeWidth="4" />
-          </svg>
-        </button>
-      </header>
+      <KanbanColumnHeader title={title} />
 
       <Droppable droppableId={`${colId}`}>
         {provided => (
