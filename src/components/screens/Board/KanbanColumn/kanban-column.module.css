@@ -9,3 +9,26 @@
 .column:not(:first-child) {
   margin-left: 2rem;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.header > button {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0.25rem;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.heading {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: var(--text-offblack);
+  margin: 0;
+}
