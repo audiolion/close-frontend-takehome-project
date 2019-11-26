@@ -5,10 +5,12 @@ import { BoardProvider } from './context/BoardProvider';
 
 function App() {
   return (
-    <BoardProvider>
+    <>
       <Header />
-      <Board />
-    </BoardProvider>
+      <BoardProvider>
+        <Board />
+      </BoardProvider>
+    </>
   );
 }
 
