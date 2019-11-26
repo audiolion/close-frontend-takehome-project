@@ -1,6 +1,6 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import { Avatar } from '../Avatar';
+import { Avatar } from '../../Avatar';
 import styles from './kanban-card.module.css';
 
 export const KanbanCard = React.memo(

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import { KanbanCard } from '../KanbanCard';
+import { KanbanCard } from './KanbanCard';
 import { KanbanColumnHeader } from './KanbanColumnHeader';
 import styles from './kanban-column.module.css';
 
