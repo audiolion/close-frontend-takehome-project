@@ -1,4 +1,5 @@
 import React from 'react';
+import shortid from 'shortid';
 import createPersistedState from 'use-persisted-state';
 import { BOARD_CACHE_KEY } from '../../utils';
 
@@ -78,6 +79,39 @@ const useBoardState = createPersistedState(BOARD_CACHE_KEY);
 const useBoard = initialState => {
   const [state, setState] = useBoardState(initialState);
 
+  const addCard = ({ colId, title, email, description }) => {
+    const column = state.columns[colId];
+
+    const cardId = shortid.generate();
+    const newCard = {
+      id: cardId,
+      title,
+      authorEmail: email,
+      description,
+    };
+
+    const cardIds = [cardId, ...column.cardIds];
+
+    const newColumn = {
+      ...column,
+      cardIds,
+    };
+
+    const newState = {
+      ...state,
+      columns: {
+        ...state.columns,
+        [newColumn.id]: newColumn,
+      },
+      cards: {
+        ...state.cards,
+        [newCard.id]: newCard,
+      },
+    };
+
+    setState(newState);
+  };
+
   const moveCard = ({ source, destination, cardId }) => {
     const sourceColumn = state.columns[source.droppableId];
     const destinationColumn = state.columns[destination.droppableId];
@@ -121,22 +155,25 @@ const useBoard = initialState => {
 
   return {
     state,
+    addCard,
     moveCard,
   };
 };
+
 export const BoardProvider = props => {
   let savedState;
   try {
     savedState = localStorage.getItem(BOARD_CACHE_KEY);
   } catch {}
 
-  const { state, moveCard } = useBoard(savedState || initialState);
+  const { state, addCard, moveCard } = useBoard(savedState || initialState);
 
   const stateChangeContext = React.useMemo(
     () => ({
+      addCard,
       moveCard,
     }),
-    [moveCard],
+    [addCard, moveCard],
   );
   return (
     <BoardStateContext.Provider value={state}>

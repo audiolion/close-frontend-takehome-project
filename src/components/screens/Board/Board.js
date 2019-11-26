@@ -16,7 +16,7 @@ function dragLocationChanged(source, destination) {
 
 export function Board() {
   const state = React.useContext(BoardStateContext);
-  const { moveCard } = React.useContext(BoardStateChangeContext);
+  const { addCard, moveCard } = React.useContext(BoardStateChangeContext);
 
   const handleDragEnd = result => {
     const { draggableId, source, destination } = result;
@@ -50,6 +50,7 @@ export function Board() {
               title={column.title}
               cardIds={column.cardIds}
               cards={state.cards}
+              addCard={addCard}
             />
           );
         })}
