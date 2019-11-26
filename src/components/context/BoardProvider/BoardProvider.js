@@ -1,4 +1,6 @@
 import React from 'react';
+import createPersistedState from 'use-persisted-state';
+import { BOARD_CACHE_KEY } from '../../utils';
 
 export const BoardStateContext = React.createContext();
 export const BoardSetStateContext = React.createContext();
@@ -70,8 +72,15 @@ const initialState = {
   },
 };
 
+const useBoardState = createPersistedState(BOARD_CACHE_KEY);
+
 export const BoardProvider = props => {
-  const [state, setState] = React.useState(initialState);
+  let savedState;
+  try {
+    savedState = localStorage.getItem(BOARD_CACHE_KEY);
+  } catch {}
+
+  const [state, setState] = useBoardState(savedState || initialState);
 
   return (
     <BoardStateContext.Provider value={state}>
