@@ -1,8 +1,12 @@
 import React from 'react';
-import styles from './kanban-column.module.css';
+import { BoardStateContext } from '../../../context/BoardProvider';
 import { KanbanCard } from '../KanbanCard';
+import styles from './kanban-column.module.css';
 
-export const KanbanColumn = ({ title }) => {
+export const KanbanColumn = ({ colId, title }) => {
+  const state = React.useContext(BoardStateContext);
+  const cardIds = state.columns[colId].cardIds;
+
   return (
     <section className={styles.column}>
       <header className={styles.header}>
@@ -20,27 +24,18 @@ export const KanbanColumn = ({ title }) => {
       </header>
 
       <div className={styles.content}>
-        <KanbanCard
-          authorEmail="lukas@close.io"
-          title="Technical Call 2"
-          content="Have a call with Close's Engineering Manager and Frontend Tech Lead."
-        />
-
-        <KanbanCard
-          authorEmail="mary@close.io"
-          title="Culture Call"
-          content="Get to know Mary Hartberg, Close's queen of culture!"
-        />
-        <KanbanCard
-          authorEmail="phil@close.io"
-          title="General Call 3"
-          content="Time to talk to Phil Freo, the Director of Engineering at Close :D"
-        />
-        <KanbanCard
-          authorEmail="steli@close.io"
-          title="Chat with Founder"
-          content="Getting so Close (pun intended)"
-        />
+        {cardIds.map(cardId => {
+          const card = state.cards[cardId];
+          return (
+            <KanbanCard
+              key={card.id}
+              cardId={card.id}
+              title={card.title}
+              authorEmail={card.authorEmail}
+              content={card.content}
+            />
+          );
+        })}
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import gravatarUrl from 'gravatar-url';
 import styles from './kanban-card.module.css';
 
-export const KanbanCard = ({ title, content, authorEmail }) => {
+export const KanbanCard = ({ cardId, title, content, authorEmail }) => {
   return (
     <article className={styles.card}>
       <header className={styles.header}>
