@@ -31,7 +31,7 @@ export const KanbanColumn = React.memo(
             <KanbanCardForm onSave={handleSave} onCancel={closeCardForm} />
           )}
 
-          <Droppable droppableId={`${colId}`}>
+          <Droppable droppableId={colId}>
             {provided => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
                 <KanbanCardList cardIds={cardIds} cards={cards} />

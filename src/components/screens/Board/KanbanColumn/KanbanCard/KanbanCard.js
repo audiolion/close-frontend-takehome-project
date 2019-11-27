@@ -6,7 +6,7 @@ import styles from './kanban-card.module.css';
 export const KanbanCard = React.memo(
   ({ cardId, index, title, description, authorEmail }) => {
     return (
-      <Draggable draggableId={`${cardId}`} index={index}>
+      <Draggable draggableId={cardId} index={index}>
         {provided => (
           <article
             {...provided.draggableProps}
