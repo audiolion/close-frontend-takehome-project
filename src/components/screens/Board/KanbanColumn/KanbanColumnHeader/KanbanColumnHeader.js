@@ -5,7 +5,11 @@ export const KanbanColumnHeader = ({ title, onOpenCardForm }) => {
   return (
     <header className={styles.header}>
       <h2 className={styles.heading}>{title}</h2>
-      <button type="button" onClick={onOpenCardForm}>
+      <button
+        type="button"
+        onClick={onOpenCardForm}
+        data-testid="open-card-form-button"
+      >
         <svg
           width="24"
           height="24"
