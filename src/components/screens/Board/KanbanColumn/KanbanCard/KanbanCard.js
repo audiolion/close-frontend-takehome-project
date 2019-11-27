@@ -10,6 +10,9 @@ export const KanbanCard = React.memo(function KanbanCard({
   description,
   authorEmail,
 }) {
+  if (process.env.NODE_ENV === 'test') {
+    console.log(`KanbanCard #${cardId}, index: ${index} render`);
+  }
   return (
     <Draggable draggableId={cardId} index={index}>
       {provided => (
