@@ -39,7 +39,11 @@ export const KanbanColumn = React.memo(function KanbanColumn({
 
         <Droppable droppableId={colId}>
           {provided => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className={styles.flex}
+            >
               <KanbanCardList cardIds={cardIds} cards={cards} />
               {provided.placeholder}
             </div>
